@@ -1,0 +1,6 @@
+#!/bin/sh
+# Wrapper for pdflatex. Boring auxiliary files are moved to aux/ folder
+
+pdflatex "$@"
+
+sleep 3 && mv *.toc *.ent *.out *.bib *.bib.bak *.aux *.fdb_latexmk *.fls *.log *.synctex.gz *.gz aux/ &>/dev/null &

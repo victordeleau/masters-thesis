@@ -1,0 +1,100 @@
+\documentclass[12pt,a4paper,twoside]{report}
+
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\usepackage{fancyhdr}
+\usepackage{natbib}
+\usepackage{hyperref}
+\usepackage{setspace}
+\usepackage{etoolbox}
+\usepackage{endnotes}
+\usepackage{graphicx}
+\usepackage[labelfont=it]{caption}
+\usepackage{lscape}
+\usepackage{ array, blindtext}
+\usepackage{tabularx,ragged2e,booktabs}
+\usepackage[export]{adjustbox}
+\usepackage{soul}
+\usepackage{pifont}
+\usepackage[section]{placeins}
+\usepackage{amsmath}
+
+% my packages
+\usepackage{subfiles}
+
+\raggedbottom
+
+\newcolumntype{C}[1]{>{\Centering}m{#1}}
+\renewcommand\tabularxcolumn[1]{C{#1}}
+
+\let\footnote=\endnote
+
+\makeatletter
+\pretocmd{\@sect}{\singlespacing}{}{}
+\pretocmd{\@ssect}{\singlespacing}{}{}
+\apptocmd{\@sect}{\doublespacing}{}{}
+\apptocmd{\@ssect}{\doublespacing}{}{}
+\makeatother
+
+\hypersetup{
+	colorlinks,
+	citecolor=black,
+	filecolor=black,
+	linkcolor=black,
+	urlcolor=black
+}
+
+
+\makeatletter
+\def\@makechapterhead#1{%
+	\singlespacing
+	\vspace*{30\p@}%
+	{\parindent \z@ \raggedright \normalfont
+		\interlinepenalty\@M
+		\huge\bfseries  \thechapter.\quad #1\par\nobreak
+		\vskip 20\p@
+}
+\doublespacing
+}
+\makeatother
+
+\begin{document}
+
+%front matter
+\pagenumbering{gobble}
+
+\subfile{00-front-matter/00.tex}
+
+\onehalfspacing
+\tableofcontents
+\pagenumbering{gobble}
+
+\pagestyle{fancy}
+\fancyhead[LE,RO]{}
+\fancyhead[RE,LO]{\it\rightmark}
+\fancyfoot[CE,CO]{}
+\fancyfoot[LE,RO]{\thepage}
+\renewcommand{\footrulewidth}{0.5pt}
+
+%main matter
+\doublespacing
+\pagenumbering{arabic}
+
+%introduction
+\subfile{01-introduction/00.tex}
+
+%chapter 1
+\subfile{02-chapter1/00.tex}
+
+\subfile{03-appendix/00.tex}
+
+%bibliography
+\onehalfspacing
+\bibliographystyle{authordate1}
+\bibliography{references}
+\inputencoding{utf8}
+
+
+
+\end{document}
